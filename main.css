@@ -1,0 +1,11 @@
+.content{
+    padding-right: 600px;
+}
+
+ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 220px;
+    background-color: #0B4350;
+}
