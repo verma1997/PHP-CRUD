@@ -24,6 +24,22 @@
 					<label for="last_name">Last Name</label>
 					<input type="text" id="last_name" name="last_name" required placeholder="Enter Your Last Name" class="form-control" />	
 				</div>
+				<div class="form-group">
+					<label for="department">Department</label>
+					<input type="text" id="department" name="department" required placeholder="Enter the department" class="form-control" />	
+				</div>
+				<div class="form-group">
+					<label for="DOB">Date of Birth</label>
+					<input type="date" id="DOB" name="DOB" required placeholder="Date of Birth" class="form-control" />	
+				</div>
+				<div class="form-group">
+					<label for="DOJ">Date of Joining</label>
+					<input type="date" id="DOJ" name="DOJ" required placeholder="Date of Joining" class="form-control" />	
+				</div>
+				<div class="form-group">
+					<label for="salary">Salary(in LPA)</label>
+					<input type="decimal" step=".01" id="salary" name="salary" required placeholder="Salary" class="form-control" />	
+				</div>
 					<input type="submit" name="submit" value="Submit" />
 				</form>		
 			</div>
