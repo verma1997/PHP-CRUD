@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>New Page</title>
+	<title>Add/View Details</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -15,25 +15,17 @@
 				<h2>Add Details</h2>
 			</div>
 			<div class="card-body">
-				<form action="index_script.php" method="post">
-				<div class="form-group">
-					<label for="name">Full Name</label>
-					<input type="text" id="name" required placeholder="Enter Your Full Name" class="form-control" />	
+				<form action="insert.php" method="post">
+					<div class="form-group">
+					<label for="first_name">First Name</label>
+					<input type="text" id="first_name" name="first_name" required placeholder="Enter Your First Name" class="form-control" />	
 				</div>
 				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" id="email" required placeholder="Enter Email" class="form-control"/>	
+					<label for="last_name">Last Name</label>
+					<input type="text" id="last_name" name="last_name" required placeholder="Enter Your Last Name" class="form-control" />	
 				</div>
-				<div class="form-group">
-					<label for="DOB">Date Of Birth</label>
-					<input type="date" id="DOB" required class="form-control"/>	
-				</div>
-				<div class="form-group">
-					<label for="department">Department</label>
-					<input type="text" id="department" required placeholder="Enter Department" class="form-control"/>	
-				</div>
-				<button type="submit" name="submit" class="btn btn-lg btn-primary">Submit</button>
-			</form>		
+					<input type="submit" name="submit" value="Submit" />
+				</form>		
 			</div>
 		</div>
 		
@@ -41,18 +33,25 @@
 
 		<h1>List of Employees</h1>
 		<?php
-			$connect  = mysqli_connect("localhost","root","","demo");
-			$list = "SELECT * FROM new";
-			$result = mysqli_query($connect,$list); 
+			$connect  = mysqli_connect("localhost","root","","employee_details");
+			
+			$list = "SELECT ID,first_name,last_name FROM employees";
+			
+			$result = mysqli_query($connect,$list);
+
+			if(!$result){
+				echo "Failed";
+			} 
 		?>
 			<table class="table">
 				<tr>
 					<th>ID</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>DOB</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<!--<th>DOB</th>
 					<th>Department</th>
-					<th></th>
+					 -->
+					 <th></th>
 					<th></th>
 				</tr>
 				<?php
@@ -60,11 +59,9 @@
 						while($row = mysqli_fetch_assoc($result)){
 			    ?>
 						<tr>
-							<td><?php echo $row["ID"] ?></td>
-							<td><?php echo $row["name"] ?></td>
-							<td><?php echo $row["email"] ?></td>
-							<td><?php echo $row["DOB"] ?></td>
-							<td><?php echo $row["department"] ?></td>
+							<td><?php echo $row["ID"]; ?></td>
+							<td><?php echo $row["first_name"]; ?></td>
+							<td><?php echo $row["last_name"]; ?></td>
 							<td><a href='update.php?ID=<?php echo $row["ID"];?>'>Update</a></td>
 							<td><a href='delete.php?ID=<?php echo $row["ID"];?>'>Delete</a></td>
 						</tr>

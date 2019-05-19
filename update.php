@@ -1,3 +1,29 @@
+<?php
+
+$connect = mysqli_connect("localhost","root","","employee_details");
+
+if($connect){
+	
+	if(isset($_POST['submit'])){
+		
+		$ID = $_GET['ID'];
+		
+		$first_name = $_POST['first_name'];
+		
+		$last_name = $_POST['last_name'];
+		
+		$query = "UPDATE employees SET ID=$ID, first_name='$first_name', last_name='$last_name' WHERE ID=$ID ";
+
+		$result = mysqli_query($connect, $query);
+
+			header("location:index.php");
+			// echo "Successfully Updated ID : ".$ID;echo "<br>";
+	}	
+}
+?>
+
+
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Update</title>
@@ -10,28 +36,20 @@
 <div class="container">
 	<div class="card">
 		<div class="card-header">
-			<h2>Update Details</h2>
+			<h2>Updates Details</h2>
 		</div>
 		<div class="card-body">
-			<form action="index_script.php" method="post">
+			<form method="post">
 				<div class="form-group">
-					<label for="name">Full Name</label>
-					<input type="text" id="name" required placeholder="Enter Your Full Name" class="form-control" />	
+					<label for="first_name">First Name</label>
+					<input type="text" name="first_name" id="first_name" required placeholder="Enter Your First Name" class="form-control" />	
 				</div>
 				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" id="email" required placeholder="Enter Email" class="form-control"/>	
+					<label for="first_name">Last Name</label>
+					<input type="text" name="last_name" id="first_name" required placeholder="Enter Your Last Name" class="form-control" />	
 				</div>
-				<div class="form-group">
-					<label for="DOB">Date Of Birth</label>
-					<input type="date" id="DOB" required class="form-control"/>	
-				</div>
-				<div class="form-group">
-					<label for="department">Department</label>
-					<input type="text" id="department" required placeholder="Enter Department" class="form-control"/>	
-				</div>
+				
 				<input type="submit" name="submit" value="Submit" />
-				<!-- <button type="submit" name="submit" class="btn btn-lg btn-primary">Submit</button> -->
 			</form>		
 		</div>
 	</div>
@@ -39,36 +57,3 @@
 </body>
 
 </html>
-
-<?php
-
-$connect = mysqli_connect("localhost","root","","demo");
-
-
-
-if(isset($_POST['submit'])){
-	
-	$ID = $_GET['ID'];
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$DOB = $_POST['DOB'];
-	$department = $_POST['department'];
-	
-	$query = "UPDATE new SET name ='$name',email='$email',DOB='$DOB',department='$department' WHERE ID ='$ID'";
-
-	$result = mysqli_query($connect, $query);
-
-	
-	if(!$result)
-	{
-		echo "Failed to Update!"; echo "<br>";
-	}
-	else
-	{
-		echo "Successfully Updated ID : ".$ID;echo "<br>";
-		// header("location:index.php");
-	}
-}
-
-?>
-
