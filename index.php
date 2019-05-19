@@ -51,7 +51,7 @@
 		<?php
 			$connect  = mysqli_connect("localhost","root","","employee_details");
 			
-			$list = "SELECT ID,first_name,last_name FROM employees";
+			$list = "SELECT ID,first_name,last_name,department,DOB,DOJ,salary FROM employees";
 			
 			$result = mysqli_query($connect,$list);
 
@@ -64,10 +64,11 @@
 					<th>ID</th>
 					<th>First Name</th>
 					<th>Last Name</th>
-					<!--<th>DOB</th>
 					<th>Department</th>
-					 -->
-					 <th></th>
+					<th>Date of Birth</th>
+					<th>Date of Joining</th>
+					<th>Salary</th>
+					<th></th>
 					<th></th>
 				</tr>
 				<?php
@@ -78,6 +79,10 @@
 							<td><?php echo $row["ID"]; ?></td>
 							<td><?php echo $row["first_name"]; ?></td>
 							<td><?php echo $row["last_name"]; ?></td>
+							<td><?php echo $row["department"]; ?></td>
+							<td><?php echo $row["DOB"]; ?></td>
+							<td><?php echo $row["DOJ"]; ?></td>
+							<td><?php echo $row["salary"]; ?></td>
 							<td><a href='update.php?ID=<?php echo $row["ID"];?>'>Update</a></td>
 							<td><a href='delete.php?ID=<?php echo $row["ID"];?>'>Delete</a></td>
 						</tr>
