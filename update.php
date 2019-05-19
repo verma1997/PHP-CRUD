@@ -7,17 +7,31 @@ if($connect){
 	if(isset($_POST['submit'])){
 		
 		$ID = $_GET['ID'];
-		
+
 		$first_name = $_POST['first_name'];
 		
 		$last_name = $_POST['last_name'];
+
+		$department = $_POST['department'];
+
+		$DOB = $_POST['DOB'];
+
+		$DOJ = $_POST['DOJ'];
+
+		$salary = $_POST['salary'];
 		
-		$query = "UPDATE employees SET ID=$ID, first_name='$first_name', last_name='$last_name' WHERE ID=$ID ";
+		$query = "UPDATE employees SET ID=$ID, first_name='$first_name', last_name='$last_name', department='$department', DOB='$DOB', DOJ='$DOJ',salary='$salary' WHERE ID=$ID ";
 
 		$result = mysqli_query($connect, $query);
 
+		if(!$result){
+			
+			echo "Query Not Executed";
+		}
+		else{
+
 			header("location:index.php");
-			// echo "Successfully Updated ID : ".$ID;echo "<br>";
+		}
 	}	
 }
 ?>
